@@ -5,13 +5,13 @@ import userRouter from './routers/userRouter.js';
 
 
 const app = express();
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/plantsy', {
+mongoose.connect('mongodb://localhost/ecommerce', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
+    // useCreateIndex: true,
 });
 
-app.use('/api/users', userRouter);
+
 app.get('/api/products/:id', (req, res) => {
     const product = data.products.find((x) => x.id === req.params.id);
     if (product) {
