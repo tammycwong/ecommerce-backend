@@ -1,11 +1,12 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import data from './data.js';
+import productRouter from './routers/productRouter.js';
 import userRouter from './routers/userRouter.js';
 
 
 const app = express();
-mongoose.connect('mongodb://localhost/ecommerce', {
+mongoose.createConnection('mongodb://localhost/3000', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     // useCreateIndex: true,
@@ -24,7 +25,9 @@ app.get('/api/products/:id', (req, res) => {
 app.get('/api/products', (req, res) => {
     res.send(data.products);
 });
+// static data
 app.use('/api/users', userRouter);
+app.get('/api/products', productRouter);
 app.get('/', (req, res) => {
     res.send('Server is ready');
 });
